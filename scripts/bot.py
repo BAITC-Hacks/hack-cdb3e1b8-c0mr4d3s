@@ -13,9 +13,10 @@ import os
 from pathlib import Path
 import sqlite3
 import sys
+import tempfile
 from typing import Callable
 
-from .config import ROOT, load_config, configure_logging, logger as LOG, redact_token
+from .config import ROOT, BotConfig, load_config, configure_logging, logger as LOG, redact_token
 
 SEED = 42
 FILTERS = {
@@ -128,10 +129,29 @@ def load_telegram_token() -> str:
     return token
 
 
+def migrate_legacy_database(path: Path) -> None:
+    legacy_path = ROOT / "bot_data" / "runs.sqlite3"
+    if path != (ROOT / BotConfig().db_path).resolve() or path.exists() or not legacy_path.is_file():
+        return
+    # SQLite backup includes committed WAL records; copying just the file can lose them.
+    with tempfile.TemporaryDirectory(prefix=".migration-", dir=path.parent) as folder:
+        snapshot = Path(folder) / "runs.sqlite3"
+        with (closing(sqlite3.connect(legacy_path.resolve().as_uri() + "?mode=ro", uri=True, timeout=10)) as source,
+              closing(sqlite3.connect(snapshot, timeout=10)) as destination):
+            source.backup(destination)
+        try:
+            # Publish a complete snapshot without replacing an existing destination.
+            path.hardlink_to(snapshot)
+        except FileExistsError:
+            return
+    LOG.info("История SQLite скопирована из bot_data в data/bot; исходная база сохранена.")
+
+
 class RunStore:
     def __init__(self, path: Path):
         self.path = Path(path).expanduser().resolve()
         self.path.parent.mkdir(parents=True, exist_ok=True)
+        migrate_legacy_database(self.path)
         with closing(self.connect()) as db, db:
             db.execute("""
                 CREATE TABLE IF NOT EXISTS bot_runs (

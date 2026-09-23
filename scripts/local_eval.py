@@ -112,14 +112,28 @@ def main():
         return
 
     results = []
+    failed_seeds = []
     for seed in range(args.runs):
         res = evaluate_agent(Agent(), seed=seed, verbose=False)
         net = res["metrics"]["net_arpu_gain"]
-        results.append(net)
+        if res.get("error"):
+            failed_seeds.append(seed)
+            print(f"[!] seed {seed:2}: {res['error']}. "
+                  f"Пилотов проведено: {res['n_pilots']}; их результат включён в оценку.")
+        else:
+            results.append(net)
         print(f"seed {seed:2}: чистый результат {net:>14,.0f}")
 
-    s = pd.Series(results).dropna()
     print("\n--- устойчивость по прогонам ---")
+    print(f"прогонов без ошибок: {args.runs - len(failed_seeds)} из {args.runs}")
+    if failed_seeds:
+        seeds = ", ".join(map(str, failed_seeds))
+        print(f"прогонов с ошибкой: {len(failed_seeds)} из {args.runs} (seed: {seeds})")
+    if not results:
+        print("Нет прогонов без ошибок — статистика устойчивости недоступна.")
+        return
+    s = pd.Series(results).dropna()
+    print("Метрики прогонов без ошибок:")
     print(f"медиана: {s.median():,.0f}   минимум: {s.min():,.0f}   максимум: {s.max():,.0f}")
     print(f"прогонов в плюс: {(s > 0).sum()} из {len(s)}")
     if (s > 0).sum() not in (0, len(s)):

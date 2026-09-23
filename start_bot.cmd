@@ -3,7 +3,7 @@ setlocal
 chcp 65001 >nul
 cd /d "%~dp0"
 if not exist ".venv\Scripts\python.exe" (
-    echo Python environment not found. Follow installation steps in BOT_README.md.
+    echo Python environment not found. Follow installation steps in README.md.
     pause
     exit /b 1
 )
