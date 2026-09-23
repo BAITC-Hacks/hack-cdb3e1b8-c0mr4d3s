@@ -1,0 +1,2 @@
+{"seed": 42, "mode": "offline", "llm_outcome": "OFFLINE", "llm_calls": [], "metrics": {"net_arpu_gain": 3329109.816487866, "total_cost": 52876.0, "total_contacts": 13219, "status": "PASS"}, "errors": []}
+

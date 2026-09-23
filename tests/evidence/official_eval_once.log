@@ -1,0 +1,42 @@
+=== Результат команды: local ===
+Статус: PASS
+Baseline ARPU (без кампаний):      150,641,084
+Прирост ARPU (gross):                3,381,986
+Затраты на коммуникацию:                52,876
+ЧИСТЫЙ РЕЗУЛЬТАТ (net):              3,329,110   (+2.210% к baseline)
+ARPU после кампаний:               153,970,194
+
+Кампаний: 22  |  контактов: 13,219  |  уникальных абонентов: 11,719 (50.0%)
+Средний чистый прирост на абонента: 284.1
+ROI (gross lift / затраты): 63.96
+Risk score (% абонентов с отрицательным эффектом): 0.0%
+Бюджет: 52,876 из 100,000 у.е. (52.9%)
+
+По кампаниям (gross, до дедупликации между кампаниями):
+  - pilot_1 [sms]: контактов=150  cost=600  gross_lift=111,083  negative=0
+  - pilot_2 [sms]: контактов=150  cost=600  gross_lift=124,253  negative=0
+  - pilot_3 [sms]: контактов=150  cost=600  gross_lift=45,859  negative=0
+  - pilot_4 [sms]: контактов=150  cost=600  gross_lift=142,151  negative=0
+  - pilot_5 [sms]: контактов=150  cost=600  gross_lift=122,092  negative=0
+  - pilot_6 [sms]: контактов=150  cost=600  gross_lift=82,240  negative=0
+  - pilot_7 [sms]: контактов=150  cost=600  gross_lift=42,426  negative=0
+  - pilot_8 [sms]: контактов=150  cost=600  gross_lift=14,701  negative=0
+  - pilot_9 [sms]: контактов=150  cost=600  gross_lift=4,865  negative=0
+  - pilot_10 [sms]: контактов=150  cost=600  gross_lift=40,183  negative=0
+  - pilot_11 [sms]: контактов=150  cost=600  gross_lift=16,952  negative=0
+  - pilot_12 [sms]: контактов=150  cost=600  gross_lift=22,730  negative=0
+  - sms_tariff_13_MID_tariff_8 [sms]: контактов=1,022  cost=4,088  gross_lift=833,409  negative=0
+  - sms_tariff_8_LOW_tariff_9 [sms]: контактов=457  cost=1,828  gross_lift=412,010  negative=0
+  - sms_tariff_12_MID_tariff_8 [sms]: контактов=342  cost=1,368  gross_lift=271,171  negative=0
+  - sms_tariff_4_MID_tariff_8 [sms]: контактов=1,227  cost=4,908  gross_lift=912,020  negative=0
+  - sms_tariff_10_MID_tariff_11 [sms]: контактов=645  cost=2,580  gross_lift=192,631  negative=0
+  - sms_tariff_11_LOW_tariff_8 [sms]: контактов=387  cost=1,548  gross_lift=196,589  negative=0
+  - sms_tariff_8_HIGH_tariff_10 [sms]: контактов=4,726  cost=18,904  gross_lift=154,617  negative=0
+  - sms_tariff_11_MID_tariff_8 [sms]: контактов=464  cost=1,856  gross_lift=128,341  negative=0
+  - sms_tariff_11_HIGH_tariff_12 [sms]: контактов=1,633  cost=6,532  gross_lift=153,669  negative=0
+  - sms_tariff_13_HIGH_tariff_8 [sms]: контактов=516  cost=2,064  gross_lift=58,940  negative=0
+
+Пилотов проведено: 12 из 20
+Осталось бюджета: 92,800 из 100,000
+Осталось охвата:  13,200 из 15,000
+

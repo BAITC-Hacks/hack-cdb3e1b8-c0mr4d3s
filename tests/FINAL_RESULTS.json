@@ -1,0 +1,294 @@
+{
+  "created_at": "2026-09-23T12:20:44.203376+00:00",
+  "steps": [
+    {
+      "name": "preflight",
+      "status": "PASS",
+      "pinned_packages": 32
+    },
+    {
+      "name": "dependencies",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "dependencies.log"
+    },
+    {
+      "name": "all_tests",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 69,
+      "log": "all_tests.log"
+    },
+    {
+      "name": "official_eval_once",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "official_eval_once.log"
+    },
+    {
+      "name": "official_eval_ten",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "official_eval_ten.log"
+    },
+    {
+      "name": "strict_qa",
+      "status": "PASS",
+      "exit_code": 2,
+      "tests": 0,
+      "log": "strict_qa.log"
+    },
+    {
+      "name": "official_export_1",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "official_export_1.log"
+    },
+    {
+      "name": "official_export_2",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "official_export_2.log"
+    },
+    {
+      "name": "export_reproducibility",
+      "status": "PASS",
+      "sha256": "559dc9b2673b7556d54e04d817baa1f8c4fcf008b23880feed4ab9c490ce96e9"
+    },
+    {
+      "name": "native_package_export",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "native_package_export.log"
+    },
+    {
+      "name": "export_entrypoint_equivalence",
+      "status": "PASS"
+    },
+    {
+      "name": "provider_offline",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "provider_offline.log"
+    },
+    {
+      "name": "provider_timeout",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "provider_timeout.log"
+    },
+    {
+      "name": "provider_invalid_json",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "provider_invalid_json.log"
+    },
+    {
+      "name": "provider_invalid_ids",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "provider_invalid_ids.log"
+    },
+    {
+      "name": "bot_once",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests": 0,
+      "log": "bot_once.log"
+    },
+    {
+      "name": "bot_persistence",
+      "status": "PASS"
+    }
+  ],
+  "test_count": 69,
+  "live_telegram": "NOT_TESTED",
+  "release_status": "LOCAL_VALIDATED; LIVE_TELEGRAM_NOT_VERIFIED",
+  "completed": true,
+  "local_qa_additions": {
+    "run_all_checks.py": "561cbfcfdfb0ab34fc9acc0c9c265bc22b3e4840bf20345e75ec36e3ea99ba84",
+    "test_bot_storage_failures.py": "de5fe173a4e68c1b58a47a2d5a77d0246b75f85584b2ee6077ec3ab16855d490"
+  },
+  "versions": {
+    "annotated-types": "0.8.0",
+    "anyio": "4.15.1",
+    "certifi": "2026.7.22",
+    "cffi": "2.1.1",
+    "charset-normalizer": "3.5.1",
+    "cryptography": "50.0.1",
+    "distro": "1.9.0",
+    "google-auth": "2.58.0",
+    "google-genai": "2.25.0",
+    "h11": "0.16.0",
+    "httpcore": "1.0.9",
+    "httpx": "0.28.1",
+    "idna": "3.20",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "pyasn1": "0.6.4",
+    "pyasn1_modules": "0.4.2",
+    "pycparser": "3.0",
+    "pydantic": "2.13.5",
+    "pydantic_core": "2.46.5",
+    "python-dateutil": "2.9.0.post0",
+    "python-dotenv": "1.2.3",
+    "python-telegram-bot": "22.6",
+    "requests": "2.34.2",
+    "six": "1.17.0",
+    "sniffio": "1.3.1",
+    "tenacity": "9.1.4",
+    "typing-inspection": "0.4.4",
+    "typing_extensions": "4.16.0",
+    "tzdata": "2026.4",
+    "urllib3": "2.8.0",
+    "websockets": "16.1.1"
+  },
+  "source_refs": [
+    {
+      "name": "main",
+      "sha": "60879fb53477ca6d30baa0449427ef6613381bf9"
+    }
+  ],
+  "automated_status": "PASS",
+  "stability": {
+    "positive": 11,
+    "evaluated": 11,
+    "changes_sign": false
+  },
+  "demo_contract_observation": {
+    "errors": [],
+    "act_calls": 1,
+    "score_calls": 1,
+    "seconds": 1.204
+  },
+  "bot_result": {
+    "seed": 42,
+    "n_pilots": 12,
+    "campaigns": [
+      {
+        "campaign_name": "sms_tariff_13_MID_tariff_8",
+        "filter_current_tariff": "tariff_13",
+        "filter_arpu_segment": "MID",
+        "target_tariff": "tariff_8",
+        "channel": "sms"
+      },
+      {
+        "campaign_name": "sms_tariff_8_LOW_tariff_9",
+        "filter_current_tariff": "tariff_8",
+        "filter_arpu_segment": "LOW",
+        "target_tariff": "tariff_9",
+        "channel": "sms"
+      },
+      {
+        "campaign_name": "sms_tariff_12_MID_tariff_8",
+        "filter_current_tariff": "tariff_12",
+        "filter_arpu_segment": "MID",
+        "target_tariff": "tariff_8",
+        "channel": "sms"
+      },
+      {
+        "campaign_name": "sms_tariff_4_MID_tariff_8",
+        "filter_current_tariff": "tariff_4",
+        "filter_arpu_segment": "MID",
+        "target_tariff": "tariff_8",
+        "channel": "sms"
+      },
+      {
+        "campaign_name": "sms_tariff_10_MID_tariff_11",
+        "filter_current_tariff": "tariff_10",
+        "filter_arpu_segment": "MID",
+        "target_tariff": "tariff_11",
+        "channel": "sms"
+      },
+      {
+        "campaign_name": "sms_tariff_11_LOW_tariff_8",
+        "filter_current_tariff": "tariff_11",
+        "filter_arpu_segment": "LOW",
+        "target_tariff": "tariff_8",
+        "channel": "sms"
+      },
+      {
+        "campaign_name": "sms_tariff_8_HIGH_tariff_10",
+        "filter_current_tariff": "tariff_8",
+        "filter_arpu_segment": "HIGH",
+        "target_tariff": "tariff_10",
+        "channel": "sms"
+      },
+      {
+        "campaign_name": "sms_tariff_11_MID_tariff_8",
+        "filter_current_tariff": "tariff_11",
+        "filter_arpu_segment": "MID",
+        "target_tariff": "tariff_8",
+        "channel": "sms"
+      },
+      {
+        "campaign_name": "sms_tariff_11_HIGH_tariff_12",
+        "filter_current_tariff": "tariff_11",
+        "filter_arpu_segment": "HIGH",
+        "target_tariff": "tariff_12",
+        "channel": "sms"
+      },
+      {
+        "campaign_name": "sms_tariff_13_HIGH_tariff_8",
+        "filter_current_tariff": "tariff_13",
+        "filter_arpu_segment": "HIGH",
+        "target_tariff": "tariff_8",
+        "channel": "sms"
+      }
+    ],
+    "metrics": {
+      "net_arpu_gain": 3329109.816487866,
+      "total_cost": 52876.0,
+      "total_contacts": 13219,
+      "status": "PASS"
+    }
+  },
+  "organizer_kit": {
+    "source": "Original organizer kit, unchanged evaluator/environment/scorer/exporter",
+    "steps": [
+      {
+        "name": "evaluate_once",
+        "status": "PASS"
+      },
+      {
+        "name": "evaluate_ten",
+        "status": "PASS"
+      },
+      {
+        "name": "export_first",
+        "status": "PASS"
+      },
+      {
+        "name": "export_second",
+        "status": "PASS"
+      }
+    ],
+    "organizer_files_sha256": {
+      "local_eval.py": "16c3b96b00487c02ee470a23e6b4554c220a5ea817b1ea46b75cfac158dd5b47",
+      "make_submission.py": "25c82a71640814de613261a2684824db66c53c7f948af5aa8ba333ae263a9622",
+      "environment.py": "8003a305ea9a560270ee875b2c48a6b1fbf8198d9c6c680e4827542532bb3dd1",
+      "mock_environment.py": "e1e4a480126d2896e89a868194b3ed7f7ee48d7c5fc2c8a2491970d8e231f506",
+      "scoring_core.py": "ba68595daebb12418000fa4d59ffbbf156df045f589bdbb789f3531145c58327",
+      "customer_profile.csv": "a85e9badf4cb51b1ba8c43a868498b6fa8075509f3cd8e19ef72e1c25a6dc815",
+      "tariff_dictionary.csv": "d3e6588f5d8e8e51202b4a77b2d4c0243080965a82d8e1d9411149220dd9df1c",
+      "feature_dictionary.csv": "80bb9dddea7a054c3ef6569805013efbe313c7918a9d72d06203d1534e8f5c21"
+    },
+    "bot_files_in_package": false,
+    "csv_sha256": "559dc9b2673b7556d54e04d817baa1f8c4fcf008b23880feed4ab9c490ce96e9",
+    "status": "PASS"
+  },
+  "python": "3.12.14",
+  "application_base": "60879fb53477ca6d30baa0449427ef6613381bf9",
+  "qa_parent": "cfe6e32b312aab93f5c1f6b9c4a3a8d8c811ba85",
+  "log_directory": "tests/evidence"
+}

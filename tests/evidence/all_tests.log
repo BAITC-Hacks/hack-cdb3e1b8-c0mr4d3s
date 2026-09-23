@@ -1,0 +1,84 @@
+[!] ВНИМАНИЕ: в файле нет ни одной колонки-фильтра — все кампании бьют по всей базе. Проверьте, что команда прислала файл в правильном формате.
+
+test_all_negative_pilots_still_produce_a_valid_plan (tests.test_agent_resilience.AgentResilienceTests.test_all_negative_pilots_still_produce_a_valid_plan) ... ok
+test_allowed_pilot_size_boundaries (tests.test_agent_resilience.AgentResilienceTests.test_allowed_pilot_size_boundaries) ... ok
+test_non_finite_pilot_results_use_fallback (tests.test_agent_resilience.AgentResilienceTests.test_non_finite_pilot_results_use_fallback) ... ok
+test_pilot_observations_change_the_final_decision (tests.test_agent_resilience.AgentResilienceTests.test_pilot_observations_change_the_final_decision) ... ok
+test_single_failed_pilot_does_not_stop_exploration (tests.test_agent_resilience.AgentResilienceTests.test_single_failed_pilot_does_not_stop_exploration) ... ok
+test_small_budget_accounts_for_pilot_spending (tests.test_agent_resilience.AgentResilienceTests.test_small_budget_accounts_for_pilot_spending) ... ok
+test_small_contact_limit_reserves_room_for_final_campaigns (tests.test_agent_resilience.AgentResilienceTests.test_small_contact_limit_reserves_room_for_final_campaigns) ... ok
+test_concurrent_run_is_rejected_while_history_is_responsive (tests.test_bot.BotTests.test_concurrent_run_is_rejected_while_history_is_responsive) ... ok
+test_empty_history_and_argument_rejection (tests.test_bot.BotTests.test_empty_history_and_argument_rejection) ... ok
+test_error_is_saved_and_visible_in_last_and_history (tests.test_bot.BotTests.test_error_is_saved_and_visible_in_last_and_history) ... WARNING tariff_agent: Запуск #1 завершился ошибкой (RuntimeError)
+ok
+test_history_shows_latest_five_and_isolates_chats (tests.test_bot.BotTests.test_history_shows_latest_five_and_isolates_chats) ... ok
+test_interrupted_run_is_recovered_after_restart (tests.test_bot.BotTests.test_interrupted_run_is_recovered_after_restart) ... ok
+test_invalid_eval_result_is_saved_as_error (tests.test_bot.BotTests.test_invalid_eval_result_is_saved_as_error) ... WARNING tariff_agent: Запуск #1 завершился ошибкой (ValueError)
+ok
+test_long_unicode_response_fits_telegram_limit (tests.test_bot.BotTests.test_long_unicode_response_fits_telegram_limit) ... ok
+test_negative_score_and_no_campaigns_are_results_not_exceptions (tests.test_bot.BotTests.test_negative_score_and_no_campaigns_are_results_not_exceptions) ... ok
+test_result_persists_if_telegram_delivery_fails (tests.test_bot.BotTests.test_result_persists_if_telegram_delivery_fails) ... ok
+test_run_last_history_and_restart (tests.test_bot.BotTests.test_run_last_history_and_restart) ... ok
+test_token_is_redacted_before_storage (tests.test_bot.BotTests.test_token_is_redacted_before_storage) ... WARNING tariff_agent: Запуск #1 завершился ошибкой (RuntimeError)
+ok
+test_invalid_contract_values (tests.test_bot.ContractTests.test_invalid_contract_values) ... ok
+test_missing_real_backend_never_falls_back_to_mock (tests.test_bot.ContractTests.test_missing_real_backend_never_falls_back_to_mock) ... ok
+test_mock_does_not_import_eval (tests.test_bot.ContractTests.test_mock_does_not_import_eval) ... ok
+test_offline_module_cli_with_windows_encoding (tests.test_bot.ContractTests.test_offline_module_cli_with_windows_encoding) ... ok
+test_real_backend_calls_only_run_demo_once (tests.test_bot.ContractTests.test_real_backend_calls_only_run_demo_once) ... ok
+test_unrelated_infinite_roi_does_not_break_agreed_metrics (tests.test_bot.ContractTests.test_unrelated_infinite_roi_does_not_break_agreed_metrics) ... ok
+test_finish_failure_remains_unfinished_until_restart_recovery (tests.test_bot_storage_failures.StorageFailureTests.test_finish_failure_remains_unfinished_until_restart_recovery) ... ERROR tariff_agent: Ошибка обработки команды (OperationalError)
+ok
+test_insert_failure_does_not_run_agent_or_claim_success (tests.test_bot_storage_failures.StorageFailureTests.test_insert_failure_does_not_run_agent_or_claim_success) ... ERROR tariff_agent: Ошибка обработки команды (OperationalError)
+ok
+test_new_python_process_restores_identical_saved_record (tests.test_bot_storage_failures.StorageFailureTests.test_new_python_process_restores_identical_saved_record) ... ok
+test_backup_includes_committed_wal_records (tests.test_db_migration.DatabaseMigrationTests.test_backup_includes_committed_wal_records) ... INFO tariff_agent: История SQLite скопирована из bot_data в data/bot; исходная база сохранена.
+ok
+test_custom_database_does_not_import_legacy_history (tests.test_db_migration.DatabaseMigrationTests.test_custom_database_does_not_import_legacy_history) ... ok
+test_default_upgrade_preserves_history_and_next_run_id (tests.test_db_migration.DatabaseMigrationTests.test_default_upgrade_preserves_history_and_next_run_id) ... INFO tariff_agent: История SQLite скопирована из bot_data в data/bot; исходная база сохранена.
+ok
+test_existing_new_database_is_not_replaced (tests.test_db_migration.DatabaseMigrationTests.test_existing_new_database_is_not_replaced) ... ok
+test_failed_backup_leaves_source_and_no_empty_destination (tests.test_db_migration.DatabaseMigrationTests.test_failed_backup_leaves_source_and_no_empty_destination) ... ok
+test_crash_keeps_actual_pilot_contacts_and_safe_error (tests.test_demo_eval.DemoEvalTests.test_crash_keeps_actual_pilot_contacts_and_safe_error) ... ok
+test_existing_bot_commands_use_new_module_and_saved_result (tests.test_demo_eval.DemoEvalTests.test_existing_bot_commands_use_new_module_and_saved_result) ... ok
+test_multiple_seeds_match_official_evaluator (tests.test_demo_eval.DemoEvalTests.test_multiple_seeds_match_official_evaluator) ... ok
+test_no_campaigns_returns_official_zero_score (tests.test_demo_eval.DemoEvalTests.test_no_campaigns_returns_official_zero_score) ... ok
+test_paths_work_outside_project_without_changing_cwd (tests.test_demo_eval.DemoEvalTests.test_paths_work_outside_project_without_changing_cwd) ... ok
+test_requested_seed_controls_real_pilot_samples (tests.test_demo_eval.DemoEvalTests.test_requested_seed_controls_real_pilot_samples) ... ok
+test_same_run_pilot_ids_and_final_campaigns_reach_original_scorer (tests.test_demo_eval.DemoEvalTests.test_same_run_pilot_ids_and_final_campaigns_reach_original_scorer) ... ok
+test_scoring_failure_propagates_to_bot_error_handling (tests.test_demo_eval.DemoEvalTests.test_scoring_failure_propagates_to_bot_error_handling) ... ok
+test_zero_cost_score_becomes_strict_json_at_bot_boundary (tests.test_demo_eval.DemoEvalTests.test_zero_cost_score_becomes_strict_json_at_bot_boundary) ... ok
+test_bot_settings_do_not_change_agent_defaults (tests.test_integration.ConfigTests.test_bot_settings_do_not_change_agent_defaults) ... ok
+test_dotenv_loads_only_token_without_overriding_environment (tests.test_integration.ConfigTests.test_dotenv_loads_only_token_without_overriding_environment) ... ok
+test_malformed_bot_settings_fail (tests.test_integration.ConfigTests.test_malformed_bot_settings_fail) ... ok
+test_removed_runner_setting_fails_instead_of_silently_switching_backend (tests.test_integration.ConfigTests.test_removed_runner_setting_fails_instead_of_silently_switching_backend) ... ok
+test_agent_crash_preserves_and_scores_pilot_contacts (tests.test_integration.IntegrationTests.test_agent_crash_preserves_and_scores_pilot_contacts) ... ok
+test_empty_agent_result_is_scored_without_diverging_from_core (tests.test_integration.IntegrationTests.test_empty_agent_result_is_scored_without_diverging_from_core) ... ok
+test_real_agent_through_commands_matches_official_eval (tests.test_integration.IntegrationTests.test_real_agent_through_commands_matches_official_eval) ... Executing <Task finished name='Task-83' coro=<IntegrationTests.test_real_agent_through_commands_matches_official_eval() done, defined at <project>\tests\test_integration.py:19> result=None created at <USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\runners.py:100> took 0.344 seconds
+ok
+test_all_runs_crash_without_printing_empty_statistics (tests.test_local_eval.LocalEvalTests.test_all_runs_crash_without_printing_empty_statistics) ... ok
+test_runs_reports_crash_and_includes_completed_pilots (tests.test_local_eval.LocalEvalTests.test_runs_reports_crash_and_includes_completed_pilots) ... ok
+test_runs_without_crashes_reports_all_completed (tests.test_local_eval.LocalEvalTests.test_runs_without_crashes_reports_all_completed) ... ok
+test_automatic_budget_trimming (tests.test_qa_check.CheckerTests.test_automatic_budget_trimming) ... ok
+test_demo_double_agent_call (tests.test_qa_check.CheckerTests.test_demo_double_agent_call) ... ok
+test_demo_metric_mismatch (tests.test_qa_check.CheckerTests.test_demo_metric_mismatch) ... ok
+test_demo_non_json_value (tests.test_qa_check.CheckerTests.test_demo_non_json_value) ... ok
+test_demo_omitted_pilots (tests.test_qa_check.CheckerTests.test_demo_omitted_pilots) ... ok
+test_demo_single_call_uses_real_scoring (tests.test_qa_check.CheckerTests.test_demo_single_call_uses_real_scoring) ... ok
+test_duplicate_segments (tests.test_qa_check.CheckerTests.test_duplicate_segments) ... ok
+test_empty_answer (tests.test_qa_check.CheckerTests.test_empty_answer) ... ok
+test_exception_hidden_by_local_eval (tests.test_qa_check.CheckerTests.test_exception_hidden_by_local_eval) ... ok
+test_invalid_tariff_dropped_by_local_eval (tests.test_qa_check.CheckerTests.test_invalid_tariff_dropped_by_local_eval) ... ok
+test_valid_agent (tests.test_qa_check.CheckerTests.test_valid_agent) ... ok
+test_connection_check_exits_without_polling (tests.test_startup.StartupTests.test_connection_check_exits_without_polling) ... ok
+test_invalid_token_prevents_polling_and_database_creation (tests.test_startup.StartupTests.test_invalid_token_prevents_polling_and_database_creation) ... ok
+test_network_failure_does_not_claim_token_is_invalid (tests.test_startup.StartupTests.test_network_failure_does_not_claim_token_is_invalid) ... ok
+test_repeated_setup_has_one_handler_and_preserves_root (tests.test_startup.StartupTests.test_repeated_setup_has_one_handler_and_preserves_root) ... ok
+test_sdk_bootstrap_traceback_and_request_url_are_safe (tests.test_startup.StartupTests.test_sdk_bootstrap_traceback_and_request_url_are_safe) ... ok
+test_successful_check_proceeds_to_polling (tests.test_startup.StartupTests.test_successful_check_proceeds_to_polling) ... ok
+test_root_agent_runs_from_another_directory_without_bot_or_database (tests.test_submission_entrypoint.SubmissionEntrypointTests.test_root_agent_runs_from_another_directory_without_bot_or_database) ... ok
+
+----------------------------------------------------------------------
+Ran 69 tests in 47.843s
+
+OK

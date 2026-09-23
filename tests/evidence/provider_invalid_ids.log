@@ -1,0 +1,2 @@
+{"seed": 42, "mode": "invalid_ids", "llm_outcome": "FALLBACK", "llm_calls": [{"completed": true, "ids_valid": false, "seconds": 0.0}], "metrics": {"net_arpu_gain": 3329109.816487866, "total_cost": 52876.0, "total_contacts": 13219, "status": "PASS"}, "errors": []}
+

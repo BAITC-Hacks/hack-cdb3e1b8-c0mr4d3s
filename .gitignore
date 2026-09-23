@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+/config.json
+.env.*
+!.env.example
+/data/bot/
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+
+/test_results/
+/qa_results/

@@ -1,0 +1,35 @@
+{
+  "bot": {
+    "backend": "real",
+    "db_path": "data/bot/runs.sqlite3"
+  },
+  "history": {
+    "relative_path": "data/change_tariff.csv",
+    "min_arpu": 100,
+    "min_samples": 10
+  },
+  "strategy": {
+    "min_segment_size": 300,
+    "max_segment_size": 5000,
+    "max_pilots": 12,
+    "pilot_size": 150,
+    "max_campaigns": 10,
+    "prior_weight": 50,
+    "per_customer_std": 0.8,
+    "uncertainty_penalty": 0.5
+  },
+  "gemini": {
+    "enabled": false,
+    "api_key": "",
+    "model": "gemini-3.6-flash",
+    "timeout_ms": 10000,
+    "max_attempts": 1,
+    "temperature": 0,
+    "max_output_tokens": 1024,
+    "thinking_budget": 0
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(levelname)s %(name)s: %(message)s"
+  }
+}

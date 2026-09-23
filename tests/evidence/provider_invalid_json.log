@@ -1,0 +1,2 @@
+{"seed": 42, "mode": "invalid_json", "llm_outcome": "FALLBACK", "llm_calls": [{"completed": false, "ids_valid": false, "error_type": "JSONDecodeError", "http_status": null, "seconds": 0.0}], "metrics": {"net_arpu_gain": 3329109.816487866, "total_cost": 52876.0, "total_contacts": 13219, "status": "PASS"}, "errors": []}
+

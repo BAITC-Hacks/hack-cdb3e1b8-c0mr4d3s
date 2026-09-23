@@ -1,0 +1,235 @@
+{
+  "main": [
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "389fa5e409c6d67045a28fcae40a9395f4b5ee10",
+      "size": 3789,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/389fa5e409c6d67045a28fcae40a9395f4b5ee10"
+    },
+    {
+      "path": "PARTICIPANT_GUIDE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a461783d550678985bdd95e3c05bf24354e509f",
+      "size": 14977,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/2a461783d550678985bdd95e3c05bf24354e509f"
+    },
+    {
+      "path": "PARTICIPANT_GUIDE.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf8ca84bd66e3b20e85cdc672125acc49d66c70f",
+      "size": 100624,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/cf8ca84bd66e3b20e85cdc672125acc49d66c70f"
+    },
+    {
+      "path": "config.example.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d916e288e7f33f6e0126ca1699ad3494e80c46d6",
+      "size": 737,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/d916e288e7f33f6e0126ca1699ad3494e80c46d6"
+    },
+    {
+      "path": "data/arpu_monthly.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b37004126488503ec189cdcbf1e6750fa712a7dc",
+      "size": 1873661,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/b37004126488503ec189cdcbf1e6750fa712a7dc"
+    },
+    {
+      "path": "data/change_tariff.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03d6b2c053e33f1d28c838e68edb39c5707db1ec",
+      "size": 908574,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/03d6b2c053e33f1d28c838e68edb39c5707db1ec"
+    },
+    {
+      "path": "data/customer_profile.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a51c85ae66f2a698a36fd5d84e552345a3d11e89",
+      "size": 6170133,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/a51c85ae66f2a698a36fd5d84e552345a3d11e89"
+    },
+    {
+      "path": "data/dict_tariff.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "655b54ee4aa0c7d8c4fd55f0f4cebf941fdfe531",
+      "size": 668,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/655b54ee4aa0c7d8c4fd55f0f4cebf941fdfe531"
+    },
+    {
+      "path": "data/feature_dictionary.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d19632749e5e8410b34ec6d494c1944141f34cf",
+      "size": 4292,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/5d19632749e5e8410b34ec6d494c1944141f34cf"
+    },
+    {
+      "path": "data/tariff_dictionary.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "261d5286816784a75a690fd126892552a08f1e84",
+      "size": 4171,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/261d5286816784a75a690fd126892552a08f1e84"
+    },
+    {
+      "path": "data/traffic.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "163de40fc13f08e591c956e92e6a4c6e15428cdc",
+      "size": 13078124,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/163de40fc13f08e591c956e92e6a4c6e15428cdc"
+    },
+    {
+      "path": "hackalem_ai_beeline_tariff_marketing_campaigns_case.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d36af1c32464cfa717a61b713dc0183f0d9e23f",
+      "size": 185658,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/6d36af1c32464cfa717a61b713dc0183f0d9e23f"
+    },
+    {
+      "path": "requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99720685bceece06cdb594e1792d14c61d8d7091",
+      "size": 576,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/99720685bceece06cdb594e1792d14c61d8d7091"
+    },
+    {
+      "path": "scripts/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ecb3a955234984c4322076e419998f36f5975ed",
+      "size": 55,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/2ecb3a955234984c4322076e419998f36f5975ed"
+    },
+    {
+      "path": "scripts/agent.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "058b702691dc4b63219a790082035a7b76eedae1",
+      "size": 11284,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/058b702691dc4b63219a790082035a7b76eedae1"
+    },
+    {
+      "path": "scripts/bot.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "776ebc6c887aa6445ae8cdb2b73a3fa45c32a5bf",
+      "size": 23095,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/776ebc6c887aa6445ae8cdb2b73a3fa45c32a5bf"
+    },
+    {
+      "path": "scripts/config.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3e5b99081a448a5ef550b25c5814e931f2f9525",
+      "size": 7578,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/c3e5b99081a448a5ef550b25c5814e931f2f9525"
+    },
+    {
+      "path": "scripts/environment.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "969e99856367b0d60b35e634d3ad032caa1f9df3",
+      "size": 14242,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/969e99856367b0d60b35e634d3ad032caa1f9df3"
+    },
+    {
+      "path": "scripts/local_eval.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cbc3a301fba51a8fc1b4401468dd1b3bef141493",
+      "size": 6910,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/cbc3a301fba51a8fc1b4401468dd1b3bef141493"
+    },
+    {
+      "path": "scripts/scoring_core.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d539815ae77f1e5efe181b4061e2e6153733dbee",
+      "size": 17868,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/d539815ae77f1e5efe181b4061e2e6153733dbee"
+    },
+    {
+      "path": "start_bot.cmd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e04de39daaeecad942740cd01ea91bc627111e7",
+      "size": 372,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/4e04de39daaeecad942740cd01ea91bc627111e7"
+    },
+    {
+      "path": "tests/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3e7c2675c0032a4a50f4ecd8d2f5ad50a45a833",
+      "size": 57,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/f3e7c2675c0032a4a50f4ecd8d2f5ad50a45a833"
+    },
+    {
+      "path": "tests/bot_eval.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ecd076b7bcc9349831337d8dcedad051699d554",
+      "size": 1777,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/9ecd076b7bcc9349831337d8dcedad051699d554"
+    },
+    {
+      "path": "tests/test_bot.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07521d4cfdef0ea7974aabe94c512b2107de5f7f",
+      "size": 11382,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/07521d4cfdef0ea7974aabe94c512b2107de5f7f"
+    },
+    {
+      "path": "tests/test_db_migration.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a32781bc8023535179722be224da9633fb5dabf",
+      "size": 3758,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/1a32781bc8023535179722be224da9633fb5dabf"
+    },
+    {
+      "path": "tests/test_integration.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e850c2cdb0f205fc6eba1a07df64d108c94c7a43",
+      "size": 6389,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/e850c2cdb0f205fc6eba1a07df64d108c94c7a43"
+    },
+    {
+      "path": "tests/test_local_eval.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b6a728c4de5cb0af99e51848516ba67416970f1",
+      "size": 4511,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/4b6a728c4de5cb0af99e51848516ba67416970f1"
+    },
+    {
+      "path": "tests/test_startup.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38c21c15cb7d44d554c3d49e86760985320887ba",
+      "size": 5858,
+      "url": "https://api.github.com/repos/BAITC-Hacks/hack-cdb3e1b8-c0mr4d3s/git/blobs/38c21c15cb7d44d554c3d49e86760985320887ba"
+    }
+  ],
+  "refs": [
+    {
+      "name": "main",
+      "sha": "60879fb53477ca6d30baa0449427ef6613381bf9"
+    }
+  ],
+  "qa_base": "cfe6e32b312aab93f5c1f6b9c4a3a8d8c811ba85"
+}
