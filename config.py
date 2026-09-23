@@ -90,11 +90,27 @@ class LoggingConfig:
 
 
 @dataclass(frozen=True)
+class BotConfig:
+    backend: str = "real"
+    runner_module: str = "bot_eval"
+    db_path: str = "bot_data/runs.sqlite3"
+
+    def __post_init__(self):
+        if self.backend not in ("mock", "real"):
+            raise ValueError("bot.backend must be mock or real")
+        if self.runner_module not in ("bot_eval", "demo_eval"):
+            raise ValueError("bot.runner_module must be bot_eval or demo_eval")
+        if not isinstance(self.db_path, str) or not self.db_path.strip():
+            raise ValueError("bot.db_path must be a non-empty path")
+
+
+@dataclass(frozen=True)
 class AgentConfig:
     history: HistoryConfig = field(default_factory=HistoryConfig)
     strategy: StrategyConfig = field(default_factory=StrategyConfig)
     gemini: GeminiConfig = field(default_factory=GeminiConfig)
     logging: LoggingConfig = field(default_factory=LoggingConfig)
+    bot: BotConfig = field(default_factory=BotConfig)
 
 
 def load_config(path: str | Path | None = None) -> AgentConfig:
@@ -103,8 +119,8 @@ def load_config(path: str | Path | None = None) -> AgentConfig:
     if not path.exists():
         return AgentConfig()
     data = json.loads(path.read_text(encoding="utf-8-sig"))
-    if not isinstance(data, dict) or set(data) - {"history", "strategy", "gemini", "logging"}:
-        raise ValueError("Config must contain only history, strategy, gemini and logging sections")
+    if not isinstance(data, dict) or set(data) - {"history", "strategy", "gemini", "logging", "bot"}:
+        raise ValueError("Config must contain only history, strategy, gemini, logging and bot sections")
     if any(not isinstance(section, dict) for section in data.values()):
         raise ValueError("Each config section must be an object")
     history = dict(data.get("history", {}))
@@ -116,4 +132,5 @@ def load_config(path: str | Path | None = None) -> AgentConfig:
         strategy=StrategyConfig(**data.get("strategy", {})),
         gemini=GeminiConfig(**data.get("gemini", {})),
         logging=LoggingConfig(**data.get("logging", {})),
+        bot=BotConfig(**data.get("bot", {})),
     )

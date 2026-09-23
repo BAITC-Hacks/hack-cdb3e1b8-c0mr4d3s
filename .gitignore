@@ -3,3 +3,10 @@ __pycache__/
 *.py[cod]
 .env
 /config.json
+.env.*
+!.env.example
+bot_data/
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
