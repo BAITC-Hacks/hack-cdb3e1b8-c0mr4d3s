@@ -225,7 +225,7 @@ def main():
         worker(args)
         return 0
     report = {"project": str(args.project), "agent_module": args.agent_module,
-              "scope": "mock QA only; bot/SQLite adapters not yet implemented", "runs": []}
+              "scope": "mock agent/demo QA; bot suites run separately (see qa/README.md)", "runs": []}
     for seed in dict.fromkeys([42, *range(args.runs)]):
         result = invoke(args, "agent", seed)
         report["runs"].append(result)
@@ -237,12 +237,12 @@ def main():
         report["demo"] = invoke(args, "demo")
     else:
         report["demo"] = {"status": "NOT_TESTED", "reason": "agent.py or demo_eval.py is missing"}
-    report["bot"] = {"status": "NOT_TESTED", "reason": "Requires project-specific handler/SQLite tests against the actual bot"}
+    report["bot"] = {"status": "NOT_TESTED", "reason": "Not run by this command; run tests/ and qa/test_demo_eval.py separately"}
     gains = [r["metrics"]["net_arpu_gain"] for r in report["runs"] if r.get("metrics")]
     report["stability"] = {"positive": sum(v > 0 for v in gains), "evaluated": len(gains),
                            "changes_sign": any(v > 0 for v in gains) and any(v <= 0 for v in gains)}
     failed = any(r.get("errors") for r in report["runs"]) or not report["submission"]["reproducible"] or bool(report["demo"].get("errors"))
-    report["status"] = "FAIL" if failed else "PARTIAL"  # Bot QA is deliberately pending.
+    report["status"] = "FAIL" if failed else "PARTIAL"  # This command does not run the separate bot suites or live checks.
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"QA: {report['status']}; report: {args.report.resolve()}", flush=True)
