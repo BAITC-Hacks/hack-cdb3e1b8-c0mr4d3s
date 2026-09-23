@@ -1,9 +1,16 @@
-"""Typed defaults and loading of the private, optional config.json file."""
+"""Application settings, private config.json loading, and safe logging."""
 
+from copy import copy
 import json
+import logging
+import os
+import re
 from dataclasses import dataclass, field
 from math import isfinite
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = ROOT / "data"
 
 
 @dataclass(frozen=True)
@@ -92,14 +99,11 @@ class LoggingConfig:
 @dataclass(frozen=True)
 class BotConfig:
     backend: str = "real"
-    runner_module: str = "bot_eval"
-    db_path: str = "bot_data/runs.sqlite3"
+    db_path: str = "data/bot/runs.sqlite3"
 
     def __post_init__(self):
         if self.backend not in ("mock", "real"):
             raise ValueError("bot.backend must be mock or real")
-        if self.runner_module not in ("bot_eval", "demo_eval"):
-            raise ValueError("bot.runner_module must be bot_eval or demo_eval")
         if not isinstance(self.db_path, str) or not self.db_path.strip():
             raise ValueError("bot.db_path must be a non-empty path")
 
@@ -115,7 +119,7 @@ class AgentConfig:
 
 def load_config(path: str | Path | None = None) -> AgentConfig:
     """Missing files/fields use defaults; malformed or unknown settings fail clearly."""
-    path = Path(path) if path is not None else Path(__file__).with_name("config.json")
+    path = ROOT / (path if path is not None else "config.json")
     if not path.exists():
         return AgentConfig()
     data = json.loads(path.read_text(encoding="utf-8-sig"))
@@ -124,6 +128,12 @@ def load_config(path: str | Path | None = None) -> AgentConfig:
     if any(not isinstance(section, dict) for section in data.values()):
         raise ValueError("Each config section must be an object")
     history = dict(data.get("history", {}))
+    bot = dict(data.get("bot", {}))
+    # Accept the old default without keeping a configurable import mechanism.
+    if bot.get("runner_module") == "bot_eval":
+        del bot["runner_module"]
+    if "runner_module" in bot:
+        raise ValueError("bot.runner_module is no longer supported; remove it to use local_eval")
     for key in ("arpu_thresholds", "arpu_labels", "lift_bounds"):
         if key in history:
             history[key] = tuple(history[key])
@@ -132,5 +142,45 @@ def load_config(path: str | Path | None = None) -> AgentConfig:
         strategy=StrategyConfig(**data.get("strategy", {})),
         gemini=GeminiConfig(**data.get("gemini", {})),
         logging=LoggingConfig(**data.get("logging", {})),
-        bot=BotConfig(**data.get("bot", {})),
+        bot=BotConfig(**bot),
     )
+
+
+logger = logging.getLogger("tariff_agent")
+_handler: logging.StreamHandler | None = None
+
+
+def redact_token(text: str) -> str:
+    token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+    if token:
+        text = text.replace(token, "[TOKEN]")
+    return re.sub(r"\b\d{5,}:[A-Za-z0-9_-]{20,}", "[TOKEN]", text)
+
+
+class SafeFormatter(logging.Formatter):
+    def formatException(self, exc_info) -> str:
+        # SDK exceptions can embed credentials in their message and traceback.
+        return exc_info[0].__name__
+
+    def format(self, record: logging.LogRecord) -> str:
+        record = copy(record)
+        record.exc_text = None  # Discard a traceback cached by another formatter.
+        return redact_token(super().format(record))
+
+
+def configure_logging(settings: LoggingConfig) -> None:
+    global _handler
+    formatter = SafeFormatter(settings.format)
+    if _handler is None:
+        _handler = logging.StreamHandler()
+        logger.addHandler(_handler)
+    _handler.setFormatter(formatter)
+    logger.setLevel(settings.level)
+    logger.propagate = False
+    # PTB logs bootstrap failures before main() can catch them. Route SDK logs
+    # through the safe formatter instead of the root/last-resort handler.
+    for name in ("telegram", "httpx", "httpcore"):
+        external = logging.getLogger(name)
+        external.addHandler(_handler)
+        external.setLevel(logging.WARNING)
+        external.propagate = False

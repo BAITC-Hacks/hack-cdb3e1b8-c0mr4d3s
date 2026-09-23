@@ -7,7 +7,6 @@ import asyncio
 from contextlib import closing
 from datetime import datetime, timezone
 import json
-import importlib
 import math
 from numbers import Integral, Real
 import os
@@ -16,11 +15,8 @@ import sqlite3
 import sys
 from typing import Callable
 
-from config import load_config
-from logging_config import configure_logging, logger as LOG, redact_token
+from .config import ROOT, load_config, configure_logging, logger as LOG, redact_token
 
-ROOT = Path(__file__).resolve().parent
-DEFAULT_DB = ROOT / "bot_data" / "runs.sqlite3"
 SEED = 42
 FILTERS = {
     "filter_arpu_segment": "ARPU",
@@ -49,7 +45,7 @@ def mock_run_demo(seed: int = 42) -> dict:
     }
 
 
-def load_runner(backend: str, runner_module: str = "bot_eval") -> Callable[[int], dict]:
+def load_runner(backend: str) -> Callable[[int], dict]:
     if backend == "mock":
         return mock_run_demo
     if backend != "real":
@@ -58,7 +54,7 @@ def load_runner(backend: str, runner_module: str = "bot_eval") -> Callable[[int]
     def run_demo(seed: int = 42) -> dict:
         # Import only on /run. Missing/broken eval is recorded as an error;
         # never silently replace a failed real run with mock results.
-        evaluate = importlib.import_module(runner_module).run_demo
+        from .local_eval import run_demo as evaluate
         return evaluate(seed)
 
     return run_demo
@@ -344,10 +340,10 @@ async def check_telegram_connection(token: str) -> str:
         return client.username
 
 
-def build_application(token: str, store: RunStore, backend: str, runner_module: str = "bot_eval"):
+def build_application(token: str, store: RunStore, backend: str):
     from telegram.ext import Application, CommandHandler
 
-    handlers = BotHandlers(store, backend, load_runner(backend, runner_module))
+    handlers = BotHandlers(store, backend, load_runner(backend))
     application = (Application.builder().token(token).concurrent_updates(8)
                    .post_init(on_startup).build())
     for name, callback in (("start", handlers.start), ("help", handlers.start),
@@ -388,7 +384,7 @@ def main() -> int:
     if args.demo or args.once:
         store = RunStore(db_path)
         run_id = store.start(0, SEED, backend)
-        execute_run(store, run_id, load_runner(backend, settings.bot.runner_module), SEED)
+        execute_run(store, run_id, load_runner(backend), SEED)
         row = store.recent(0, 1)[0]
         print(format_run(row))
         print(f"\nSQLite: {store.path}")
@@ -399,13 +395,13 @@ def main() -> int:
         parser.error("Установите зависимости: python -m pip install -r requirements.txt")
     if args.check_config:
         print(f"Источник: {mode_label(backend)}")
-        print(f"Функция: {settings.bot.runner_module}.run_demo")
+        print("Функция: " + ("bot.mock_run_demo" if backend == "mock" else "local_eval.run_demo"))
         print(f"SQLite: {db_path.resolve()}")
         print("Токен Telegram: " + ("задан" if token else "не задан"))
         print("Gemini: " + ("включён" if settings.gemini.enabled else "выключен"))
         return 0 if token else 1
     if not token:
-        parser.error("Задайте TELEGRAM_BOT_TOKEN в окружении или .env. Без Telegram: python bot.py --once")
+        parser.error("Задайте TELEGRAM_BOT_TOKEN в окружении или .env. Без Telegram: python -m scripts.bot --once")
     try:
         from telegram.error import InvalidToken, NetworkError
 
@@ -415,7 +411,7 @@ def main() -> int:
         if args.check_telegram:
             return 0
         store = RunStore(db_path)
-        application = build_application(token, store, backend, settings.bot.runner_module)
+        application = build_application(token, store, backend)
         store.recover_interrupted()
         LOG.info("Режим: %s; SQLite: %s", backend, store.path)
         application.run_polling(allowed_updates=["message"], drop_pending_updates=True)

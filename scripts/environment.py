@@ -43,6 +43,9 @@
 import numpy as np
 import pandas as pd
 
+from .config import ROOT, DATA_DIR
+from .scoring_core import CHANNELS, TOTAL_BUDGET, MAX_TOTAL_CONTACTS
+
 MAX_PILOTS = 20
 MAX_PILOT_CUSTOMERS = 200
 MIN_PILOT_CUSTOMERS = 10
@@ -204,3 +207,51 @@ def make_environment(customer_profile, impact_model, dict_tariff, channels,
             return [dict(c) for c in _pilot_campaigns]
 
     return env, _Internals()
+
+
+ARPU_BINS = [-np.inf, 1000, 5000, np.inf]
+ARPU_LABELS = ["LOW", "MID", "HIGH"]
+
+
+def _mock_impact_model(change_tariff: pd.DataFrame) -> pd.DataFrame:
+    """Заглушка: простое среднее относительного изменения ARPU по группе."""
+    df = change_tariff.copy()
+    df["arpu_segment"] = pd.cut(df["AVG_ARPU_PREV_3M"], bins=ARPU_BINS, labels=ARPU_LABELS)
+    df = df[df["AVG_ARPU_PREV_3M"] >= 100].copy()
+    df["arpu_change_pct"] = ((df["AVG_ARPU_NEXT_3M"] - df["AVG_ARPU_PREV_3M"])
+                             / df["AVG_ARPU_PREV_3M"]).clip(-1, 3)
+
+    grouped = (df.groupby(["tariff_plan_code_from", "tariff_plan_code_to", "arpu_segment"], observed=True)
+               .agg(arpu_change_pct=("arpu_change_pct", "mean"), count=("ID_NUMBER", "size"))
+               .reset_index())
+    totals = (grouped.groupby(["tariff_plan_code_from", "arpu_segment"], observed=True)["count"]
+              .sum().rename("total").reset_index())
+    grouped = grouped.merge(totals, on=["tariff_plan_code_from", "arpu_segment"])
+    grouped["conversion_rate"] = grouped["count"] / grouped["total"]
+    return grouped.drop(columns=["total"])
+
+
+def _mock_fallback(current_tariff, target_tariff, arpu_segment, dict_tariff, fallback_conversion):
+    price = dict_tariff.set_index("tariff_plan_code")["price_tariff"]
+    if current_tariff not in price.index or target_tariff not in price.index:
+        return 0.0, fallback_conversion
+    scale = max(price.median(), 1.0)
+    ratio = (price[target_tariff] - price[current_tariff]) / scale
+    return float(np.clip(ratio * 0.4, -1.0, 3.0)), fallback_conversion
+
+
+def make_mock_env(seed=None, data_dir=DATA_DIR, profile_path=DATA_DIR / "customer_profile.csv"):
+    """Возвращает (env, internals) — как и настоящая среда на судействе."""
+    change_tariff = pd.read_csv(ROOT / data_dir / "change_tariff.csv")
+    dict_tariff = pd.read_csv(ROOT / data_dir / "dict_tariff.csv")
+    profile = pd.read_csv(ROOT / profile_path)
+    return make_environment(
+        customer_profile=profile,
+        impact_model=_mock_impact_model(change_tariff),
+        dict_tariff=dict_tariff,
+        channels=CHANNELS,
+        total_budget=TOTAL_BUDGET,
+        max_total_contacts=MAX_TOTAL_CONTACTS,
+        fallback_predict=_mock_fallback,
+        seed=seed,
+    )

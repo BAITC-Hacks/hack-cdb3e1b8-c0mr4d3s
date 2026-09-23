@@ -10,9 +10,8 @@ from unittest.mock import AsyncMock, Mock, patch
 from telegram import User
 from telegram.error import InvalidToken, TimedOut
 
-import bot
-from config import AgentConfig, LoggingConfig
-import logging_config
+from scripts import bot, config
+from scripts.config import AgentConfig, LoggingConfig
 
 
 TOKEN = "123456789:" + "FakeTestToken" * 3
@@ -26,7 +25,7 @@ class StartupTests(unittest.TestCase):
             state = (logger.handlers[:], logger.level, logger.propagate)
             self.addCleanup(self.restore_logger, logger, state)
             logger.handlers = []
-        self.enterContext(patch.object(logging_config, "_handler", None))
+        self.enterContext(patch.object(config, "_handler", None))
         self.enterContext(patch("sys.stderr", self.output))
         self.enterContext(patch("sys.stdout", io.StringIO()))
         self.enterContext(patch.dict(os.environ, {"TELEGRAM_BOT_TOKEN": TOKEN}))
@@ -42,7 +41,7 @@ class StartupTests(unittest.TestCase):
         self.assertNotIn("Traceback", self.output.getvalue())
 
     def test_sdk_bootstrap_traceback_and_request_url_are_safe(self):
-        logging_config.configure_logging(LoggingConfig())
+        config.configure_logging(LoggingConfig())
         sdk_logger = logging.getLogger("telegram.ext._utils.networkloop")
         try:
             try:
@@ -65,7 +64,7 @@ class StartupTests(unittest.TestCase):
         root = logging.getLogger()
         original = (root.handlers[:], root.level)
         for _ in range(3):
-            logging_config.configure_logging(LoggingConfig())
+            config.configure_logging(LoggingConfig())
         for name in ("tariff_agent", "telegram", "httpx", "httpcore"):
             self.assertEqual(len(logging.getLogger(name).handlers), 1)
         self.assertEqual((root.handlers, root.level), original)

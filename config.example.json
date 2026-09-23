@@ -1,8 +1,7 @@
 {
   "bot": {
     "backend": "real",
-    "runner_module": "bot_eval",
-    "db_path": "bot_data/runs.sqlite3"
+    "db_path": "data/bot/runs.sqlite3"
   },
   "history": {
     "relative_path": "data/change_tariff.csv",

@@ -9,11 +9,11 @@ import subprocess
 import sys
 import tempfile
 import threading
-from types import ModuleType, SimpleNamespace
+from types import SimpleNamespace
 import unittest
 from unittest.mock import AsyncMock, Mock, patch
 
-import bot
+from scripts import bot
 
 
 def fake_update(chat_id=101):
@@ -209,30 +209,29 @@ class ContractTests(unittest.TestCase):
         json.dumps(clean, allow_nan=False)
 
     def test_real_backend_calls_only_run_demo_once(self):
-        module = ModuleType("demo_eval")
-        module.run_demo = Mock(side_effect=bot.mock_run_demo)
-        with patch.dict("sys.modules", {"demo_eval": module}):
-            result = bot.load_runner("real", "demo_eval")(42)
-        module.run_demo.assert_called_once_with(42)
+        with patch("scripts.local_eval.run_demo", side_effect=bot.mock_run_demo) as run_demo:
+            result = bot.load_runner("real")(42)
+        run_demo.assert_called_once_with(42)
         self.assertEqual(result["seed"], 42)
 
     def test_missing_real_backend_never_falls_back_to_mock(self):
-        with patch.dict("sys.modules", {"demo_eval": None}):
+        with patch.dict("sys.modules", {"scripts.local_eval": None}):
             with self.assertRaises(ModuleNotFoundError):
-                bot.load_runner("real", "demo_eval")(42)
+                bot.load_runner("real")(42)
 
     def test_mock_does_not_import_eval(self):
-        with patch.dict("sys.modules", {"demo_eval": None, "agent": None, "scoring_core": None}):
+        with patch.dict("sys.modules", {"scripts.local_eval": None,
+                                       "scripts.agent": None, "scripts.scoring_core": None}):
             self.assertEqual(bot.load_runner("mock")(42)["seed"], 42)
 
-    def test_offline_cli_with_windows_encoding_and_different_working_directory(self):
+    def test_offline_module_cli_with_windows_encoding(self):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / "cli.sqlite3"
             environment = dict(os.environ, PYTHONIOENCODING="cp1252")
             environment.pop("TELEGRAM_BOT_TOKEN", None)
             result = subprocess.run(
-                [sys.executable, str(bot.ROOT / "bot.py"), "--demo", "--backend", "mock",
-                 "--db", str(path)], cwd=folder, env=environment,
+                [sys.executable, "-m", "scripts.bot", "--demo", "--backend", "mock",
+                 "--db", str(path)], cwd=bot.ROOT, env=environment,
                 capture_output=True, text=True, encoding="utf-8", timeout=10,
             )
             self.assertEqual(result.returncode, 0, result.stderr)

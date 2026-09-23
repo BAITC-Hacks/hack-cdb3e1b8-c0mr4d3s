@@ -7,7 +7,7 @@ if not exist ".venv\Scripts\python.exe" (
     pause
     exit /b 1
 )
-".venv\Scripts\python.exe" -B -X utf8 bot.py
+".venv\Scripts\python.exe" -B -X utf8 -m scripts.bot %*
 if errorlevel 1 (
     echo.
     echo Fix the error shown above, then run start_bot.cmd again.
